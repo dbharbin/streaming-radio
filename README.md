@@ -3,3 +3,5 @@ This is primarily an instructional repo that outlines the steps to use IceCast a
 
 # Initial Setup
 
+![alt text](./Images/Qualcomm DragonBoard 820c Streaming Internet Radio Demo Setup Demo notes.jpg "Demo Setup")
+
