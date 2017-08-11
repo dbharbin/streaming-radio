@@ -1,5 +1,5 @@
 # streaming-radio
-This is primarily an instructional repo that outlines the steps to use IceCast and Gqrx on DragonBoards 820c in creating a streaming SDR.
+This is primarily an instructional repo that outlines the steps to use IceCast and Gqrx on DragonBoards 820c (herein referred to synomously with "the target") in creating a streaming SDR.
 
 # Initial Setup
 This demo uses an RTL-SDR USB audio dongle based on the RTL2832U chipset. The good news is these are only $20! The Gqrx open source application connects to the dongle and decodes full-spectrum radio including FSRS, Amature Radio bands, FM Radio, National Weather frequencies, Air Traffic control, and more.   It then leverages the streaming UDP output of Gqrx, uses VLC to convert this to Ogg and sends it to the open source streaming audio server application IceCast, creating a streaming radio that streams the radio frequencies being played to client computers.   The high level demo setup is shown in the picture below.
@@ -109,11 +109,24 @@ Failed to open rtlsdr device #0.
 Again, don't worry about the ominous last two lines above.
 
 ### Verify sound
-Before installing Gqrx, let's go ahead and verify that audio is working.
+Before installing Gqrx, let's go ahead and verify that audio is working.  
 
+* Copy any .mp3 or .ogg audio file (a song) to the target. 
+* Plug in the USB Audio Adaptor into the target and plug a set of headphones (or 3.5mm jack speaker) into the USB Audio Adaptor
+* Bring up VLC found in the `Sound & Video` sub menu on the desktop.
+* Play the song that was downloaded and verify that you can hear it.
+
+If you cannot hear the song playing on the headphones, then open the `PulseAudio Volume Control` sub menu to bring up the audio configuration application as shown below:
+
+![alt text](Images/Qualcomm-DragonBoard820c-StreamingRadioDemo.jpg "Pulse")
+
+
+Debug the configuration to make sure the USB Audio Adaptor is the default sound device. Don't continue until sound is working on the target.
 
 ### Install Gqrx
-Install with the following commands:
+As a reminder, these instructions are sequential and assume you have performed all steps successfully up to this point.
+
+Install Gqrx:
 
 ```
 sudo apt-get update
