@@ -118,8 +118,7 @@ Before installing Gqrx, let's go ahead and verify that audio is working.
 
 If you cannot hear the song playing on the headphones, then open the `PulseAudio Volume Control` sub menu to bring up the audio configuration application as shown below:
 
-![alt text](Images/Qualcomm-DragonBoard820c-StreamingRadioDemo.jpg "Pulse")
-
+![alt text](Images/PulseAudioVLC+GqrxPlaying.png "Pulse")
 
 Debug the configuration to make sure the USB Audio Adaptor is the default sound device. Don't continue until sound is working on the target.
 
@@ -142,8 +141,77 @@ The above takes a while. You are now ready to fire up Gqrx and listen to the air
 
 ### Install and Configure IceCast
 
+`sudo apt-get -y install icecast2`
 
+Answer "no" to the question about whether you want to configure IceCast.
 
+Now configure the IceCast Configuration file. 
+
+`sudo vi /etc/icecast2/icecast.xml`
+
+Below is the diff between mine and the default. I have also included mine in this repo.  Between that and reading [this,](http://icecast.org/docs/icecast-2.4.1/config-file.html) configure the file with the passwords and config options for your network setup.
+
+```
+diff icecast.xml original_icecast.xml 
+5,6c5,6
+<     <location>**Scottsdale**</location>
+<     <admin>**don.harbin@gmail.com**</admin>
+---
+>     <location>Earth</location>
+>     <admin>icemaster@localhost</admin>
+37c37
+<         <source-password>**linaro**</source-password>
+---
+>         <source-password>hackme</source-password>
+39c39
+<         <relay-password>**linaro**</relay-password>
+---
+>         <relay-password>hackme</relay-password>
+43c43
+<         <admin-password>**linaro**</admin-password>
+---
+>         <admin-password>hackme</admin-password>
+64c64
+<     <hostname>**192.168.1.115**</hostname>
+---
+>     <hostname>localhost</hostname>
+70c70
+<         <shoutcast-mount>/stream</shoutcast-mount>
+---
+>         <!-- <shoutcast-mount>/stream</shoutcast-mount> -->
+117c117
+<         <local-mount>/**donstream.ogg**</local-mount>
+---
+>         <local-mount>/different.ogg</local-mount>
+236a237
+>         <!--
+238,239c239,240
+<             <user>**icecast2**</user>
+<             <group>**icecast**</group>
+---
+>             <user>nobody</user>
+>             <group>nogroup</group>
+240a242
+>         -->
+```
+
+Modify the following to enable init.d script
+
+`sudo vi /etc/default/icecast2`
+
+Change "ENABLE=false" to ENABLE=true"  and save.  Then restart IceCast
+
+`/etc/init.d/icecast2 restart`
+
+Can now verify it's running.  Enter the following to see if the IceCast server is up and running
+
+```
+$ps -aux|grep icecast
+
+linaro     460  0.0  0.0   4392   592 pts/1    S+   23:48   0:00 grep icecast
+icecast2  2092  0.0  0.3 383604  9876 ?        Sl   Aug08   2:06 /usr/bin/icecast2 -b -c /etc/icecast2/icecast.xml
+$
+```
 
 
 # Set up the demo
@@ -208,14 +276,16 @@ PICTURE HERE
 # References
 * [The Gqrx SDR home page](http://gqrx.dk/)
 * [Setting up RTL-2832U USB Dongle for Raspberry Pi](http://zr6aic.blogspot.ca/2013/02/setting-up-my-raspberry-pi-as-sdr-server.html) was very helpful.
-* [Youtube video]()https://www.youtube.com/watch?v=4kJc1aKg17c&t=8s that was helpful in connecting Gqrx to IceCast using VLC
 * How the UDP Streaming works on Gqrx; a nice writeup [here](http://gqrx.dk/doc/streaming-audio-over-udp#more-157)
-* 
+* [Youtube video]()https://www.youtube.com/watch?v=4kJc1aKg17c&t=8s that was helpful in connecting Gqrx to IceCast using VLC
+* [Installing IceCast on Debian](https://tech.tiq.cc/2014/03/how-to-set-up-icecast2-on-debian/)
+* Details about the IceCast config file icecast.xml can be found [here](http://icecast.org/docs/icecast-2.4.1/config-file.html)
 
 
-# Extra Credit 
+# Next Steps 
 If you got this far, congratulations!  You are streaming radio over your home network, and with minor modifications, even over the internet!  This section lists some possible follow-on extensions to the project that could be fun.
-* Build and use a gstreamer pipeline instead of VLC to convert the output of Gqrx into an IceCast source stream. I've given it a try, but unsuccessful to date.  Ping me if you want my gstreamer pipelines I have attempted to no avail.
+
+* Build and use a gstreamer pipeline instead of VLC to convert the output of Gqrx into an IceCast source stream. I've given it a try, but unsuccessful to date.  Ping me if you want my gstreamer pipelines I have attempted.
 * Use other SDR's instead of Gqrx.
 * Test with some different SDR Dongles other than the one used here.
 * Build Gqrx from source and redo the demo.  This would be the first step in investigating ways to do some performance improvements.
@@ -223,4 +293,5 @@ If you got this far, congratulations!  You are streaming radio over your home ne
 * Create a scanner.  Some starting code can be found for this in the community.
 * Punch through your firewall and stream to the internet.
 * Build your DragonBoard 820c from source.  Also could build and Open Embedded (OE) image and repeat the demo.
+* Integrate the SDR into a bigger IVI demo on AGL
 * others?
