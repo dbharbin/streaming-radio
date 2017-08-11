@@ -30,7 +30,6 @@ This section shows how to install, configure and validate VLC, GKRellm, Gqrx, an
 sudo apt-get update
 sudo apt-get -y install vlc
 sudo apt-get -y install gkrellm
-sudo apt-get -y install gqrx
 sudo apt-get -y install git
 sudo apt-get -y install cmake
 sudp apt-get -y install libusb-1.0-0.dev
@@ -39,7 +38,7 @@ sudo apt-get -y install build-essential
 OR install all at once:
 ```
 sudo apt-get update
-sudo apt-get -y install vlc gkrellm gqrx git cmake libusb-1.0-0.dev build-essential
+sudo apt-get -y install vlc gkrellm git cmake libusb-1.0-0.dev build-essential
 ```
 ### Configure the system for the RTL-2832U USB dongle
 
@@ -60,7 +59,82 @@ Next reate the rtl-sdr rules. Plug the RTL-SDR dongle into the USB Port on the D
 `lsusb|grep Real`
 
 You should get an output similar to the following:
+
 `Bus 001 Device 003: ID 0bda:2838 Realtek Semiconductor Corp. RTL2838 DVB-T`
+
+From the above, determine the VenderID and Product ID.  In the example above, the VenderID is `0bda` and the ProductID is `2838`. 
+
+Create the rtl-sdr.rules file:
+
+`vi /etc/udev/rules.d/rtl-sdr.rules`
+
+And insert the following line:
+`SUBSYSTEMS=="usb", ATTRS{idVendor}=="**0bda**", ATTRS{idProduct}=="**2838**", MODE:="0666"`
+
+Save the file and exit.
+
+Power cycle with the SDR USB Dongle disconnect and **after** the system has booted, install the dongle.
+
+To test the driver build above and assure it's working correctly, run the following command:
+
+`sudo rtl_test -t`
+
+Successful results should look similar to the following:
+
+```
+sudo rtl_test -t
+Found 1 device(s):
+  0:  Realtek, RTL2838UHIDIR, SN: 00000001
+
+Using device 0: Generic RTL2832U OEM
+Found Rafael Micro R820T tuner
+Supported gain values (29): 0.0 0.9 1.4 2.7 3.7 7.7 8.7 12.5 14.4 15.7 16.6 19.7 20.7 22.9 25.4 28.0 29.7 32.8 33.8 36.4 37.2 38.6 40.2 42.1 43.4 43.9 44.5 48.0 49.6 
+[R82XX] PLL not locked!
+Sampling at 2048000 S/s.
+No E4000 tuner found, aborting.
+```
+Don't worry about the ominous last three lines above. Things work fine with those.  If you happen to run the rtl_test command while Gqrx is running the output is a little different as follows:
+
+```
+Found 1 device(s):
+  0:  Realtek, RTL2838UHIDIR, SN: 00000001
+
+Using device 0: Generic RTL2832U OEM
+usb_claim_interface error -6
+Failed to open rtlsdr device #0.
+```
+
+Again, don't worry about the ominous last two lines above.
+
+### Verify sound
+Before installing Gqrx, let's go ahead and verify that audio is working.
+
+
+### Install Gqrx
+Install with the following commands:
+
+```
+sudo apt-get update
+sudo apt-get -y install gqrx-sdr
+```
+Optimize the performance by running the following:
+
+```
+sudo apt-get install libvolk1-bin 
+volk_profile
+```
+The above takes a while. You are now ready to fire up Gqrx and listen to the air waves!  But first let's get installing and configuring IceCast out of the way.
+
+### Install and Configure IceCast
+
+
+
+
+
+## Set up the demo
+Now that everything is installed, we understand how to check audio by using the PulseAudio Volume Control App, we can set up the demo.  This is the section that needs to be done each time you power up the demo.
+
+
 
 
 
