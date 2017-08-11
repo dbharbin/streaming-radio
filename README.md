@@ -7,7 +7,9 @@ This demo uses an RTL-SDR USB audio dongle based on the RTL2832U chipset. The go
 ![alt text](Images/Qualcomm-DragonBoard820c-StreamingRadioDemo.jpg "Demo Setup")
 
 * Information on the UART Serial Mezzanine can be found [here](https://www.96boards.org/product/uartserial/)
-* Information on the DragonBoard 820c can be found **tbd**
+* Information on the DragonBoard 820c can be found **tbd**'
+* I used [this](https://www.amazon.com/gp/product/B01N905VOY/ref=oh_aui_detailpage_o05_s00?ie=UTF8&psc=1) USB Audio Adaptor
+* And I used [this](https://www.amazon.com/RTL-SDR-Blog-RTL2832U-Software-Telescopic/dp/B011HVUEME/ref=sr_1_34?ie=UTF8&qid=1502428142&sr=8-34-spons&keywords=rtl-sdr+usb&psc=1) SDR Dongle
 
 Build 68 of the DragonBoard 820c was used and can be found on the 96boards web site.  A later build could be used and new features are being added regularly, so a later build may be a good choice. The builds can be found [here](http://builds.96boards.org/snapshots/dragonboard820c/linaro/debian/).
 
@@ -201,7 +203,8 @@ PICTURE HERE
 # Extra Credit 
 If you got this far, congratulations!  You are streaming radio over your home network, and with minor modifications, even over the internet!  This section lists some possible follow-on extensions to the project that could be fun.
 * Build and use a gstreamer pipeline instead of VLC to convert the output of Gqrx into an IceCast source stream. I've given it a try, but unsuccessful to date.  Ping me if you want my gstreamer pipelines I have attempted to no avail.
-* Use other SDR's insteam of Gqrx.
+* Use other SDR's instead of Gqrx.
+* Test with some different SDR Dongles other than the one used here.
 * Build Gqrx from source and redo the demo.  This would be the first step in investigating ways to do some performance improvements.
 * Use more elaborate and advances antennas to improve reception.
 * Create a scanner.  Some starting code can be found for this in the community.
