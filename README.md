@@ -192,6 +192,7 @@ PICTURE HERE
 
 # References
 * [The Gqrx SDR home page](http://gqrx.dk/)
+* [Setting up RTL-2832U USB Dongle for Raspberry Pi](http://zr6aic.blogspot.ca/2013/02/setting-up-my-raspberry-pi-as-sdr-server.html) was very helpful.
 * [Youtube video]()https://www.youtube.com/watch?v=4kJc1aKg17c&t=8s that was helpful in connecting Gqrx to IceCast using VLC
 * How the UDP Streaming works on Gqrx; a nice writeup [here](http://gqrx.dk/doc/streaming-audio-over-udp#more-157)
 * 
