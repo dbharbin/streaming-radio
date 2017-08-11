@@ -131,7 +131,7 @@ The above takes a while. You are now ready to fire up Gqrx and listen to the air
 
 
 
-## Set up the demo
+# Set up the demo
 Now that everything is installed, we understand how to check audio by using the PulseAudio Volume Control App, we can set up the demo.  This is the section that needs to be done each time you power up the demo.
 
 
