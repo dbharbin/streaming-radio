@@ -16,14 +16,55 @@ The remainder of this section goes through the steps to configure the DragonBoar
 ## Install Debian image on the Dragonboard 820c 
 To install the Debian image, follow the instructions for **Installing Debian - Console image** found [here](https://github.com/96boards/documentation/wiki/Dragonboard-820c-Getting-Started-With-Linux).  
 
-If you have access to internal linaro wiki and additional page for initializing UFS can be found [here](https://wiki.linaro.org/Internal/QCOM/DragonBoard-820c). 
+If you have access to internal linaro wiki an additional page for initializing UFS can be found [here](https://wiki.linaro.org/Internal/QCOM/DragonBoard-820c). 
 
 ## Install LXQt desktop
 Installing the LXQt Desktop is done by following the **Graphical image (with GPU)** section in the same document [here](https://github.com/96boards/documentation/wiki/Dragonboard-820c-Getting-Started-With-Linux).
 
-## Install additional applications
+## Install and configure demo applications
+
+This section shows how to install, configure and validate VLC, GKRellm, Gqrx, and IceCast.  Execute the following commands in a terminal on the DragonBoard 820c:
+
+### Install the new packages required:
+```
+sudo apt-get update
+sudo apt-get -y install vlc
+sudo apt-get -y install gkrellm
+sudo apt-get -y install gqrx
+sudo apt-get -y install git
+sudo apt-get -y install cmake
+sudp apt-get -y install libusb-1.0-0.dev
+sudo apt-get -y install build-essential
+```
+OR install all at once:
+```
+sudo apt-get update
+sudo apt-get -y install vlc gkrellm gqrx git cmake libusb-1.0-0.dev build-essential
+```
+### Configure the system for the RTL-2832U USB dongle
+
+From a terminal on the DragonBoard 820c, first build and install the RTL-2832U USB dongle driver,
 
 ```
+git clone git://git.osmocom.org/rtl-sdr.git
+cd rtl-sdr/
+mkdir build
+cd build
+cmake ../
+make
+sudo make install
+sudo ldconfig
+```
+Next reate the rtl-sdr rules. Plug the RTL-SDR dongle into the USB Port on the DragonBoard 820c and execute the following command to determine the VenderID and ProductID of the dongle:
+
+`lsusb|grep Real`
+
+You should get an output similar to the following:
+`Bus 001 Device 003: ID 0bda:2838 Realtek Semiconductor Corp. RTL2838 DVB-T`
+
+
+
+
 
 
 # References
