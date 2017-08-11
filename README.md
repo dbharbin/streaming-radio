@@ -192,6 +192,9 @@ PICTURE HERE
 
 # References
 * [The Gqrx SDR home page](http://gqrx.dk/)
+* [Youtube video]()https://www.youtube.com/watch?v=4kJc1aKg17c&t=8s that was helpful in connecting Gqrx to IceCast using VLC
+* How the UDP Streaming works on Gqrx; a nice writeup [here](http://gqrx.dk/doc/streaming-audio-over-udp#more-157)
+* 
 
 
 # Extra Credit 
