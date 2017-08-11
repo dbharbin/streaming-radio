@@ -137,6 +137,55 @@ Now that everything is installed, we understand how to check audio by using the 
 
 
 
+# Debug hints
+Helpful debug hints when setting up and verifying this demo:
+
+### Check status of icecast
+
+`ps -aux|grep icecast`
+
+### IceCast commands from DragonBoard 820c terminal:
+
+```
+/etc/init.d/icecast2 start
+/etc/init.d/icecast2 stop
+/etc/init.d/icecast2 restart
+```
+
+### Checking to see if Gqrx UDP is streaming:
+
+`nc -l -u localhost 7355`  or `nc -l -u 7355` or `nc -l -u <IP Address of 820c> 7355` 
+
+Can be entered from the terminal to see the UDP streaming from Gqrx.When executed from a terminal on the target, the above will create a random character stream in the terminal window on the target. Note there may be cases where one of these will work and another will not. 
+
+### Monitoring board temperature
+
+Note that since the kernel is not entirely integrated at the time of this writing, it's a very good idea to monitor and control the temperature on the board.
+
+Two options were used to monitor temperature
+
+1) From Command Line enter:
+
+`cat /sys/class/thermal/thermal_zone*/temp`
+
+There are four zones that will come up similar to the following:
+```
+cat /sys/class/thermal/thermal_zone*/temp
+41600
+41900
+42900
+42900
+```
+At the time of this writing, I don't know where these 4 zones are on the board.
+Divide each of the above by 1000 to come up with degrees celsius.
+
+2) GKrellm (Preferred)
+We already installed GKrellm, so just start it up and configure it to show thermals.  It will list all 4 zones in Celsius
+
+To control and minimize the risk of overheating, expecially with an application like Gqrx that requires a lot of processor power to perform the frequency transforms in software, it is recommended at this time to add similar heat sinks and have a small fan cooling the board.  See setup picture below.
+    
+    
+PICTURE HERE
 
 
 
