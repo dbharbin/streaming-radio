@@ -6,12 +6,25 @@ This demo uses an RTL-SDR USB audio dongle based on the RTL2832U chipset. The go
 
 ![alt text](Images/Qualcomm-DragonBoard820c-StreamingRadioDemo.jpg "Demo Setup")
 
+* Information on the UART Serial Mezzanine can be found [here](https://www.96boards.org/product/uartserial/)
+* Information on the DragonBoard 820c can be found **tbd**
+
 Build 68 of the DragonBoard 820c was used and can be found on the 96boards web site.  A later build could be used and new features are being added regularly, so a later build may be a good choice. The builds can be found [here](http://builds.96boards.org/snapshots/dragonboard820c/linaro/debian/).
 
 The remainder of this section goes through the steps to configure the DragonBoard 820c for the demo.
 
 ## Install Debian image on the Dragonboard 820c 
-At this time, the DragonBoard 820c is in pre-release and only very limited availability.  The instructions are also not released publicly.  If you have access to internal linaro wiki, the instructions to verify firmware version, update the firmware, and install a developer version of Debian can be found [here](https://wiki.linaro.org/Internal/QCOM/DragonBoard-820c).  
+To install the Debian image, follow the instructions for **Installing Debian - Console image** found [here](https://github.com/96boards/documentation/wiki/Dragonboard-820c-Getting-Started-With-Linux).  
+
+If you have access to internal linaro wiki and additional page for initializing UFS can be found [here](https://wiki.linaro.org/Internal/QCOM/DragonBoard-820c). 
+
+## Install LXQt desktop
+Installing the LXQt Desktop is done by following the **Graphical image (with GPU)** section in the same document [here](https://github.com/96boards/documentation/wiki/Dragonboard-820c-Getting-Started-With-Linux).
+
+## Install additional applications
+
+```
+
 
 # References
 * [The Gqrx SDR home page](http://gqrx.dk/)
