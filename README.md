@@ -146,7 +146,7 @@ From the LXQt desktop, select the `Systems Tools` submenu and bring up GKrellM. 
 
 Now from the LXQt desktop select the `Internet` submenu and bring up Gqrx.  A screen similar to below should appear:
 
-![alt text](Images/GqrxScreenShot 99.9FMStereo.png "Gqrx")
+![alt text](Images/GqrxScreenShot99.9FMStereo.png "Gqrx")
 
 Under `File-I/O Devices`  select Realtek RTL2838UHIDIR for the `I/Q Input` and the USB Audio device you have installed under the `Audio output`, and then click `OK`
 
