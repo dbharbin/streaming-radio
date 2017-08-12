@@ -140,9 +140,23 @@ volk_profile
 The above takes a while. You are now ready to fire up Gqrx and listen to the air waves!  But first let's get installing and configuring IceCast out of the way.
 
 ### Verify Gqrx is operational
+From the LXQt desktop, select the `Systems Tools` submenu and bring up GKrellM.  Configure it so that you can keep an eye on the important system activities moving forward.  That includes Processor utilization, Network utilization, and Tempurature.
 
+![alt text](Images/GKrellm.png "GKrellm")
 
+Now from the LXQt desktop select the `Internet` submenu and bring up Gqrx.  A screen similar to below should appear:
 
+![alt text](Images/GqrxScreenShot 99.9FMStereo .png "Gqrx")
+
+Under `File-I/O Devices`  select Realtek RTL2838UHIDIR for the `I/Q Input` and the USB Audio device you have installed under the `Audio output`, and then click `OK`
+
+Click on `Mode` under the `receiver Options` tab in the app and select a valid mode (WFM Stereo for example).  Just make sure it's not in `Demod Off`!
+
+Under the Audio settings `... Network` tab enter the IP address of the target fir UDP Host, UDP Port can remain as 7355 default.  Note `localhost` may work as well.
+
+You are now ready to select `Start DSP`.  You must now select a valid FM station for your region. Type this into the frequency select box. You should now be hearing FM radio.  
+
+Do not continue until you are able to hear the radio.  Play with the tool a little bit at this point.  You should be able to listen to local airports, weather channels, CB, Amaature radio, and the list goes on.  Get familiar with the UI and learn to switch between the different modes (FM, AM, Narrow FM, etc) to dial in on all the airwaves.
 
 ### Install and Configure IceCast
 
@@ -221,15 +235,18 @@ That's it.  Now through a browser from another computer on the local network, br
 
 `http://<Target_IP_Address>:8000`
 
-Where **Target_IP_Adress** is the IP address of the DragonBoard 820c under test.  In my examples herein, that IP address is 192.168.1.115.  If everything is up and configured correctly, login is as `admin:password` abd you will see a screen similar to the one below.
+Where **Target_IP_Adress** is the IP address of the DragonBoard 820c under test.  In my examples herein, that IP address is 192.168.1.115.  If everything is up and configured correctly, login is as `admin:password` and you will see a screen similar to the one below.
 
-![alt text](Images/IceCastAdminScreen.jpg "Icecast Admin Screen")
+![alt text](Images/IceCastAdminScreen.png "Icecast Admin Screen")
 
 
 Do not continue until yo have gotten IceCast to render on another local computer on your network as shown above.
 
 # Set up the demo
 Now that everything is installed, we understand how to check audio by using the PulseAudio Volume Control App, we can set up the demo.  This is the section that needs to be done each time you power up the demo.
+
+
+
 
 
 
