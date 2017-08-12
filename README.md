@@ -1,5 +1,5 @@
 # streaming-radio
-This is primarily an instructional repo that outlines the steps to use IceCast and Gqrx on DragonBoards 820c (herein referred to synomously with "the target") in creating a streaming SDR.
+This is primarily an instructional repo that outlines the steps to use IceCast and Gqrx on DragonBoards 820c (herein referred to synomously with "the target") in creating a streaming SDR.  Note that it is configured to run only on the local network.  It does not go through local firewall and expose itself on the web.
 
 # Initial Setup
 This demo uses an RTL-SDR USB audio dongle based on the RTL2832U chipset. The good news is these are only $20! The Gqrx open source application connects to the dongle and decodes full-spectrum radio including FSRS, Amature Radio bands, FM Radio, National Weather frequencies, Air Traffic control, and more.   It then leverages the streaming UDP output of Gqrx, uses VLC to convert this to Ogg and sends it to the open source streaming audio server application IceCast, creating a streaming radio that streams the radio frequencies being played to client computers.   The high level demo setup is shown in the picture below.
@@ -139,6 +139,11 @@ volk_profile
 ```
 The above takes a while. You are now ready to fire up Gqrx and listen to the air waves!  But first let's get installing and configuring IceCast out of the way.
 
+### Verify Gqrx is operational
+
+
+
+
 ### Install and Configure IceCast
 
 `sudo apt-get -y install icecast2`
@@ -212,7 +217,16 @@ linaro     460  0.0  0.0   4392   592 pts/1    S+   23:48   0:00 grep icecast
 icecast2  2092  0.0  0.3 383604  9876 ?        Sl   Aug08   2:06 /usr/bin/icecast2 -b -c /etc/icecast2/icecast.xml
 $
 ```
+That's it.  Now through a browser from another computer on the local network, bring up the IceCast server running on the target.
 
+`http://<Target_IP_Address>:8000`
+
+Where **Target_IP_Adress** is the IP address of the DragonBoard 820c under test.  In my examples herein, that IP address is 192.168.1.115.  If everything is up and configured correctly, login is as `admin:password` abd you will see a screen similar to the one below.
+
+![alt text](Images/IceCastAdminScreen.jpg "Icecast Admin Screen")
+
+
+Do not continue until yo have gotten IceCast to render on another local computer on your network as shown above.
 
 # Set up the demo
 Now that everything is installed, we understand how to check audio by using the PulseAudio Volume Control App, we can set up the demo.  This is the section that needs to be done each time you power up the demo.
