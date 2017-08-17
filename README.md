@@ -151,13 +151,11 @@ Now from the LXQt desktop select the `Internet` submenu and bring up Gqrx.  A sc
 
 ![alt text](Images/GqrxScreenShot999FMStereo.png "Gqrx")
 
-Under `File-I/O Devices`  select Realtek RTL2838UHIDIR for the `I/Q Input` and the USB Audio device you have installed under the `Audio output`, and then click `OK`
+Under `File-I/O Devices`  select Realtek RTL2838UHIDIR for the `I/Q Input` and the USB Audio device you have installed under the `Audio output` are configured correctly, and then click `OK`
 
-Click on `Mode` under the `receiver Options` tab in the app and select a valid mode (WFM Stereo for example).  Just make sure it's not in `Demod Off`!
+Click on `Mode` under the `receiver Options` tab in the app and select a valid mode (`WFM Stereo` for example).  Just make sure it's not in `Demod Off`!
 
-Under the Audio settings `... Network` tab enter the IP address of the target fir UDP Host, UDP Port can remain as 7355 default.  Note `localhost` may work as well.
-
-You are now ready to select `Start DSP`.  You must now select a valid FM station for your region. Type this into the frequency select box. You should now be hearing FM radio.  
+You are now ready to select `Start DSP`.  You must now select a valid frequency (such as an FM chennel) for your region. Type this into the frequency select box. You should now be hearing FM radio.  
 
 Do not continue until you are able to hear the radio.  Play with the tool a little bit at this point.  You should be able to listen to local airports, weather channels, CB, Amaature radio, and the list goes on.  Get familiar with the UI and learn to switch between the different modes (FM, AM, Narrow FM, etc) to dial in on all the airwaves.
 
@@ -246,8 +244,35 @@ Where **Target_IP_Adress** is the IP address of the DragonBoard 820c under test.
 Do not continue until yo have gotten IceCast to render on another local computer on your network as shown above.
 
 # Set up the demo
-Now that everything is installed, we understand how to check audio by using the PulseAudio Volume Control App, we can set up the demo.  This is the section that needs to be done each time you power up the demo.
+Now that everything is installed we can now run the demo.  
+**NOTE:** This section is done each time you turn on power to the DragonBoard 820c and start up the demo.
 
+* After applying power to the DragonBoard 820c, check to assure IceCast is running
+```
+$ps -aux|grep icecast
+
+linaro     460  0.0  0.0   4392   592 pts/1    S+   23:48   0:00 grep icecast
+icecast2  2092  0.0  0.3 383604  9876 ?        Sl   Aug08   2:06 /usr/bin/icecast2 -b -c /etc/icecast2/icecast.xml
+$
+```
+* Start Gqrx on the DragonBoard 820c
+    * Make sure playing audio
+        * Put in headset into USB to Audio adapter and verify Audio can be heard locally.  Don't continue until this is working
+* Set up Gqrx for USP Streaming under the Audio Options tab `...` - `Network` sub menu. Enter the IP address of the DragonBoard 820c (localhost may work as well).
+    
+    ![alt text](Images/GqrxUDPSetup.png "Audio Options configuration window")
+    
+* Assure the `UDP` button on the main page is depressed, indicating that streaming is enabled.
+* Verify that UDP Streaming is happening
+    
+    
+Under the Audio settings `... Network` tab enter the IP address of the target fir UDP Host, UDP Port can remain as 7355 default.  Note `localhost` may work as well.
+
+![alt text](Images/GqrxUDPSetup.png "Audio Options configuration window")
+
+    
+    
+        * Stream to a test computer on the same network by setting up streaming with the IP address of the test computer
 
 
 
