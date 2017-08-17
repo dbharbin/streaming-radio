@@ -280,13 +280,13 @@ $
 * Assure the `UDP` button on the main page is depressed, indicating that streaming is enabled.
 * Use netcast to verify that UDP Streaming is happening by entering the following in a terminal window on the target:
 
-`nc -l -u 7355`
+  `nc -l -u 7355`
 
-If a stream of random characters are not scrolling in the terminal, debug.  Don't continue until verified.
+  If a stream of random characters are not scrolling in the terminal, debug.  Don't continue until verified.
 
 * Optional:  If you wish you can enter the IP address of another Linux computer on your network and run VLC on it as follows to hear the radio audio from the Target:
 
-`cvlc --demux=rawaud --rawaud-channels=1 --rawaud-samplerate=48000 udp://@:7355`
+  `cvlc --demux=rawaud --rawaud-channels=1 --rawaud-samplerate=48000 udp://@:7355`
 
 * next 
 
