@@ -1,22 +1,27 @@
 # streaming-radio
-This is primarily an instructional repo that outlines the steps to use IceCast and Gqrx on DragonBoards 820c (herein referred to synomously with "the target") in creating a streaming SDR.  Note that it is configured to run only on the local network.  It does not go through local firewall and expose itself on the web.
+This is primarily an instructional repo that outlines the steps to integrate IceCast and Gqrx on DragonBoards 820c (herein referred to interchangably with "the target") along with a RTL-SDR USB dongle in creating a streaming SDR.  Note that it is configured to run only on the local network.  It does not go through local firewall and expose itself on the web, but this would be something that could be done with minor enhancements.
 
 # Initial Setup
-This demo uses an RTL-SDR USB audio dongle based on the RTL2832U chipset. The good news is these are only $20! The Gqrx open source application connects to the dongle and decodes full-spectrum radio including FSRS, Amature Radio bands, FM Radio, National Weather frequencies, Air Traffic control, and more.   It then leverages the streaming UDP output of Gqrx, uses VLC to convert this to Ogg and sends it to the open source streaming audio server application IceCast, creating a streaming radio that streams the radio frequencies being played to client computers.   The high level demo setup is shown in the picture below.
+This demo uses an RTL-SDR USB audio dongle based on the RTL2832U chipset. The good news is these are only $20! The Gqrx open source application connects to the dongle and decodes a large range of the radio spectrum (from 500 kHz to 1.7 GHz) including FSRS, Amature Radio bands, FM Radio, National Weather frequencies, Air Traffic Control, and more.   It then leverages the streaming UDP output of Gqrx, uses VLC to convert this to Ogg and sends it to the open source streaming audio server application IceCast, creating a streaming radio that streams the radio frequencies being played to client computers. A high level view of the demo setup is shown in the picture below.
 
 ![alt text](Images/Qualcomm-DragonBoard820c-StreamingRadioDemo.jpg "Demo Block Diagram")
 
 * Information on the UART Serial Mezzanine can be found [here](https://www.96boards.org/product/uartserial/)
-* Information on the DragonBoard 820c can be found **tbd**'
+* Information on the DragonBoard 820c can be found **tbd**
 * I used [this](https://www.amazon.com/gp/product/B01N905VOY/ref=oh_aui_detailpage_o05_s00?ie=UTF8&psc=1) USB Audio Adaptor
 * And I used [this](https://www.amazon.com/RTL-SDR-Blog-RTL2832U-Software-Telescopic/dp/B011HVUEME/ref=sr_1_34?ie=UTF8&qid=1502428142&sr=8-34-spons&keywords=rtl-sdr+usb&psc=1) SDR Dongle
 
-Actual photo of my demo setup here:
+See an actual photo of my demo setup below:
 ![alt text](Images/DB820cStreamingRadioSetup.jpg "Demo Setup")
 
-Build 68 of the DragonBoard 820c was used and can be found on the 96boards web site.  A later build could be used and new features are being added regularly, so a later build may be a good choice. The builds can be found [here](http://builds.96boards.org/snapshots/dragonboard820c/linaro/debian/).
+Software versions:
 
-The remainder of this section goes through the steps to configure the DragonBoard 820c for the demo.
+* **Build 68** of the DragonBoard 820c was used and can be found on the 96boards web site.  A later build could be used and new features are being added regularly, so a later build may be a good choice. The builds can be found [here](http://builds.96boards.org/snapshots/dragonboard820c/linaro/debian/).
+* IceCast Version 2.4.3
+* VLC Version 2.2.6
+* Gqrx 2.6
+
+The remainder of this section goes through the steps to configure the DragonBoard 820c for the demo. Note that these sections are intended to be execute sequentially.  It also assumes you are logged in as `linaro`
 
 ## Install Debian image on the Dragonboard 820c 
 To install the Debian image, follow the instructions for **Installing Debian - Console image** found [here](https://github.com/96boards/documentation/wiki/Dragonboard-820c-Getting-Started-With-Linux).  
@@ -71,7 +76,7 @@ From the above, determine the VenderID and Product ID.  In the example above, th
 
 Create the rtl-sdr.rules file:
 
-`vi /etc/udev/rules.d/rtl-sdr.rules`
+`sudo vi /etc/udev/rules.d/rtl-sdr.rules`
 
 And insert the following line:
 `SUBSYSTEMS=="usb", ATTRS{idVendor}=="**0bda**", ATTRS{idProduct}=="**2838**", MODE:="0666"`
@@ -109,13 +114,13 @@ usb_claim_interface error -6
 Failed to open rtlsdr device #0.
 ```
 
-Again, don't worry about the ominous last two lines above.
+Again, don't worry about the last two lines above.
 
 ### Verify sound
 Before installing Gqrx, let's go ahead and verify that audio is working.  
 
 * Copy any .mp3 or .ogg audio file (a song) to the target. 
-* Plug in the USB Audio Adaptor into the target and plug a set of headphones (or 3.5mm jack speaker) into the USB Audio Adaptor
+* Plug in a USB Audio Adaptor into the target and plug a set of headphones (or 3.5mm jack speaker) into the USB Audio Adaptor. (Note: Modify this step to use onboard 3.5 mm jack once audio has been integrated into the s/w builds)
 * Bring up VLC found in the `Sound & Video` sub menu on the desktop.
 * Play the song that was downloaded and verify that you can hear it.
 
@@ -123,7 +128,7 @@ If you cannot hear the song playing on the headphones, then open the `PulseAudio
 
 ![alt text](Images/PulseAudioVLC+GqrxPlaying.png "Pulse")
 
-Debug the configuration to make sure the USB Audio Adaptor is the default sound device. Don't continue until sound is working on the target.
+Between VLC Preferences and Pulse Audio config, debug the configuration to make sure the USB Audio Adaptor is the default sound device and you can hear the song you are playing in VLC can be heard. Don't continue until sound is working on the target.
 
 ### Install Gqrx
 As a reminder, these instructions are sequential and assume you have performed all steps successfully up to this point.
@@ -140,7 +145,7 @@ Optimize the performance by running the following:
 sudo apt-get install libvolk1-bin 
 volk_profile
 ```
-The above takes a while. You are now ready to fire up Gqrx and listen to the air waves!  But first let's get installing and configuring IceCast out of the way.
+The above takes a while. 
 
 ### Verify Gqrx is operational
 From the LXQt desktop, select the `Systems Tools` submenu and bring up GKrellM.  Configure it so that you can keep an eye on the important system activities moving forward.  That includes Processor utilization, Network utilization, and Tempurature.
@@ -157,7 +162,9 @@ Click on `Mode` under the `receiver Options` tab in the app and select a valid m
 
 You are now ready to select `Start DSP`.  You must now select a valid frequency (such as an FM chennel) for your region. Type this into the frequency select box. You should now be hearing FM radio.  
 
-Do not continue until you are able to hear the radio.  Play with the tool a little bit at this point.  You should be able to listen to local airports, weather channels, CB, Amaature radio, and the list goes on.  Get familiar with the UI and learn to switch between the different modes (FM, AM, Narrow FM, etc) to dial in on all the airwaves.
+Do not continue until you are able to hear the radio.  
+
+Play with the tool a little bit at this point. You should be able to listen to local airports, weather channels, CB, Amaature radio, and the list goes on.  Get familiar with the UI and learn to switch between the different modes (FM, AM, Narrow FM, etc) to dial in on all the airwaves.
 
 ### Install and Configure IceCast
 
