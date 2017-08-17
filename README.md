@@ -12,7 +12,7 @@ This demo uses an RTL-SDR USB audio dongle based on the RTL2832U chipset. The go
 * And I used [this](https://www.amazon.com/RTL-SDR-Blog-RTL2832U-Software-Telescopic/dp/B011HVUEME/ref=sr_1_34?ie=UTF8&qid=1502428142&sr=8-34-spons&keywords=rtl-sdr+usb&psc=1) SDR Dongle
 
 Actual photo of my demo setup here:
-![alt text](Images/DB820cSteamingRadioSetup.jpg "Demo Setup")
+![alt text](Images/DB820cStreamingRadioSetup.jpg "Demo Setup")
 
 Build 68 of the DragonBoard 820c was used and can be found on the 96boards web site.  A later build could be used and new features are being added regularly, so a later build may be a good choice. The builds can be found [here](http://builds.96boards.org/snapshots/dragonboard820c/linaro/debian/).
 
