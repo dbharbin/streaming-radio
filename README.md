@@ -14,6 +14,8 @@ This demo uses an RTL-SDR USB audio dongle based on the RTL2832U chipset. The go
 See an actual photo of my demo setup below:
 ![alt text](Images/DB820cStreamingRadioSetup.jpg "Demo Setup")
 
+It's highly recommended to have a fan blowing over the Target. I even added some small heat sinks onto the EMI shield just to keep the Target running nice and cool.
+
 Software versions:
 
 * **Build 68** of the DragonBoard 820c was used and can be found on the 96boards web site.  A later build could be used and new features are being added regularly, so a later build may be a good choice. The builds can be found [here](http://builds.96boards.org/snapshots/dragonboard820c/linaro/debian/).
@@ -147,10 +149,13 @@ volk_profile
 ```
 The above takes a while. 
 
-### Verify Gqrx is operational
+### Set up GKRellM
+
 From the LXQt desktop, select the `Systems Tools` submenu and bring up GKrellM.  Configure it so that you can keep an eye on the important system activities moving forward.  That includes Processor utilization, Network utilization, and Tempurature.
 
 ![alt text](Images/GKrellm.png "GKrellm")
+
+### Verify Gqrx is operational
 
 Now from the LXQt desktop select the `Internet` submenu and bring up Gqrx.  A screen similar to below should appear:
 
