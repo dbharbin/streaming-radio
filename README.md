@@ -259,7 +259,7 @@ Where **Target_IP_Adress** is the IP address of the DragonBoard 820c under test.
 Do not continue until yo have gotten IceCast to render on another local computer on your network as shown above.
 
 # Set up the demo
-Now that everything is installed we can now run the demo.  
+Now that everything is installed we can set up and run the demo.  
 **NOTE:** This section is done each time you turn on power to the DragonBoard 820c and start up the demo.
 
 * After applying power to the DragonBoard 820c, check to assure IceCast is running
@@ -273,23 +273,22 @@ $
 * Start Gqrx on the DragonBoard 820c
     * Make sure playing audio
         * Put in headset into USB to Audio adapter and verify Audio can be heard locally.  Don't continue until this is working
-* Set up Gqrx for USP Streaming under the Audio Options tab `...` - `Network` sub menu. Enter the IP address of the DragonBoard 820c (localhost may work as well).
+* Set up Gqrx for USP Streaming under the Audio Options tab `...` - `Network` sub menu. Enter the IP address of the DragonBoard 820c (localhost may work as well). UDP Port can remain as 7355 default.
     
     ![alt text](Images/GqrxUDPSetup.png "Audio Options configuration window")
     
 * Assure the `UDP` button on the main page is depressed, indicating that streaming is enabled.
-* Verify that UDP Streaming is happening
-    
-    
-Under the Audio settings `... Network` tab enter the IP address of the target fir UDP Host, UDP Port can remain as 7355 default.  Note `localhost` may work as well.
+* Use netcast to verify that UDP Streaming is happening by entering the following in a terminal window on the target:
 
-![alt text](Images/GqrxUDPSetup.png "Audio Options configuration window")
+`nc -l -u 7355`
 
-    
-    
-        * Stream to a test computer on the same network by setting up streaming with the IP address of the test computer
+If a stream of random characters are not scrolling in the terminal, debug.  Don't continue until verified.
 
+* Optional:  If you wish you can enter the IP address of another Linux computer on your network and run VLC on it as follows to hear the radio audio from the Target:
 
+`cvlc --demux=rawaud --rawaud-channels=1 --rawaud-samplerate=48000 udp://@:7355`
+
+* next 
 
 
 
