@@ -157,23 +157,26 @@ From the LXQt desktop, select the `Systems Tools` submenu and bring up GKrellM. 
 
 ### Verify Gqrx is operational
 
-Now from the LXQt desktop select the `Internet` submenu and bring up Gqrx.  A screen similar to below should appear:
+Now from the LXQt desktop select the `Internet` submenu and bring up `Gqrx`.  A screen similar to below should appear:
 
 ![alt text](Images/GqrxScreenShot999FMStereo.png "Gqrx")
 
-Under `File-I/O Devices`  select Realtek RTL2838UHIDIR for the `I/Q Input` and the USB Audio device you have installed under the `Audio output` are configured correctly, and then click `OK`
+Under `File-I/O Devices` select Realtek RTL2838UHIDIR for the `I/Q Input` and under the `Audio output` select the USB Audio device you have plugged in, and then click `OK`
 
 Click on `Mode` under the `receiver Options` tab in the app and select a valid mode (`WFM Stereo` for example).  Just make sure it's not in `Demod Off`!
 
-You are now ready to select `Start DSP`.  You must now select a valid frequency (such as an FM chennel) for your region. Type this into the frequency select box. You should now be hearing FM radio.  
+You are now ready to select `Start DSP`.  You must now select a valid frequency (such as an FM channel) for your region. Type this into the frequency select box. You should now be hearing FM radio.  
 
 Do not continue until you are able to hear the radio.  
 
-Play with the tool a little bit at this point. You should be able to listen to local airports, weather channels, CB, Amaature radio, and the list goes on.  Get familiar with the UI and learn to switch between the different modes (FM, AM, Narrow FM, etc) to dial in on all the airwaves.
+Play with the tool a little bit at this point. You should be able to listen to local airports, weather channels, CB, Amateur radio, and the list goes on.  Get familiar with the UI and learn to switch between the different modes (FM, AM, Narrow FM, etc) to dial in on all the airwaves.
 
 ### Install and Configure IceCast
 
-`sudo apt-get -y install icecast2`
+```
+sudo apt-get update
+sudo apt-get -y install icecast2
+```
 
 Answer "no" to the question about whether you want to configure IceCast.
 
@@ -181,7 +184,7 @@ Now configure the IceCast Configuration file.
 
 `sudo vi /etc/icecast2/icecast.xml`
 
-Below is the diff between mine and the default. I have also included mine in this repo.  Between that and reading [this,](http://icecast.org/docs/icecast-2.4.1/config-file.html) configure the file with the passwords and config options for your network setup.
+Below is the diff between mine and the default. I have also included mine in this repo.  Between referring to my example and reading [this,](http://icecast.org/docs/icecast-2.4.1/config-file.html) configure the file with the passwords and config options for your network setup.
 
 ```
 diff icecast.xml original_icecast.xml 
@@ -235,7 +238,7 @@ Change "ENABLE=false" to ENABLE=true"  and save.  Then restart IceCast
 
 `/etc/init.d/icecast2 restart`
 
-Can now verify it's running.  Enter the following to see if the IceCast server is up and running
+Yuo can now verify it's running.  Enter the following to see if the IceCast server is up and running
 
 ```
 $ps -aux|grep icecast
