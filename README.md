@@ -4,12 +4,15 @@ This is primarily an instructional repo that outlines the steps to use IceCast a
 # Initial Setup
 This demo uses an RTL-SDR USB audio dongle based on the RTL2832U chipset. The good news is these are only $20! The Gqrx open source application connects to the dongle and decodes full-spectrum radio including FSRS, Amature Radio bands, FM Radio, National Weather frequencies, Air Traffic control, and more.   It then leverages the streaming UDP output of Gqrx, uses VLC to convert this to Ogg and sends it to the open source streaming audio server application IceCast, creating a streaming radio that streams the radio frequencies being played to client computers.   The high level demo setup is shown in the picture below.
 
-![alt text](Images/Qualcomm-DragonBoard820c-StreamingRadioDemo.jpg "Demo Setup")
+![alt text](Images/Qualcomm-DragonBoard820c-StreamingRadioDemo.jpg "Demo Block Diagram")
 
 * Information on the UART Serial Mezzanine can be found [here](https://www.96boards.org/product/uartserial/)
 * Information on the DragonBoard 820c can be found **tbd**'
 * I used [this](https://www.amazon.com/gp/product/B01N905VOY/ref=oh_aui_detailpage_o05_s00?ie=UTF8&psc=1) USB Audio Adaptor
 * And I used [this](https://www.amazon.com/RTL-SDR-Blog-RTL2832U-Software-Telescopic/dp/B011HVUEME/ref=sr_1_34?ie=UTF8&qid=1502428142&sr=8-34-spons&keywords=rtl-sdr+usb&psc=1) SDR Dongle
+
+Actual photo of my demo setup here:
+![alt text](Images/DB820cSteamingRadioSetup.jpg "Demo Setup")
 
 Build 68 of the DragonBoard 820c was used and can be found on the 96boards web site.  A later build could be used and new features are being added regularly, so a later build may be a good choice. The builds can be found [here](http://builds.96boards.org/snapshots/dragonboard820c/linaro/debian/).
 
