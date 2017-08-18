@@ -221,8 +221,8 @@ diff icecast.xml original_icecast.xml
 236a237
 >         <!--
 238,239c239,240
-<             <user>**icecast2**</user>
-<             <group>**icecast**</group>
+<             <user>icecast2</user>
+<             <group>icecast</group>
 ---
 >             <user>nobody</user>
 >             <group>nogroup</group>
@@ -300,7 +300,7 @@ $
 
    * Select `Media` - `Open Network Stream`  on the bottom right dropdown, change `Play` to `Stream`
      
-    ![alt text](Images/VLCNetwork-PlayToStream.png "VLC Stream Select")
+       ![alt text](Images/VLCNetwork-PlayToStream.png "VLC Stream Select")
     
    * Leave `Source` field blank and just clicke `Next`
    * Now on `Destination Setup` screen change dropdown to `IceCast` and click `Add`
@@ -350,28 +350,25 @@ Two options were used to monitor temperature
 
 1) From Command Line enter:
 
-`cat /sys/class/thermal/thermal_zone*/temp`
+   `cat /sys/class/thermal/thermal_zone*/temp`
 
-There are four zones that will come up similar to the following:
-```
-cat /sys/class/thermal/thermal_zone*/temp
-41600
-41900
-42900
-42900
-```
-At the time of this writing, I don't know where these 4 zones are on the board.
-Divide each of the above by 1000 to come up with degrees celsius.
+   There are four zones that will come up similar to the following:
+   ```
+   cat /sys/class/thermal/thermal_zone*/temp
+   41600
+   41900
+   42900
+   42900
+   ```
+   At the time of this writing, I don't know where these 4 zones are on the board.
+   Divide each of the above by 1000 to come up with degrees celsius.
 
 2) GKrellm (Preferred)
-We already installed GKrellm, so just start it up and configure it to show thermals.  It will list all 4 zones in Celsius
+   We already installed GKrellm, so just start it up and configure it to show thermals.  It will list all 4 zones in Celsius
 
-To control and minimize the risk of overheating, expecially with an application like Gqrx that requires a lot of processor power to perform the frequency transforms in software, it is recommended at this time to add similar heat sinks and have a small fan cooling the board.  See setup picture below.
+   To control and minimize the risk of overheating, expecially with an application like Gqrx that requires a lot of processor power to perform the frequency transforms in software, it is recommended at this time to add small heat sinks and have a small fan cooling over the board.
     
-    
-PICTURE HERE
-
-
+       ![alt text](Images/DragonBoard820c.png "DragonBoard 820c")
 
 
 # References
@@ -384,15 +381,15 @@ PICTURE HERE
 
 
 # Next Steps 
-If you got this far, congratulations!  You are streaming radio over your home network, and with minor modifications, even over the internet!  This section lists some possible follow-on extensions to the project that could be fun.
+If you got this far, congratulations!  You're streaming radio over your home network, and with minor modifications, even over the internet!  This section lists some possible follow-on extensions to the project that could be fun.
 
-* Build and use a gstreamer pipeline instead of VLC to convert the output of Gqrx into an IceCast source stream. I've given it a try, but unsuccessful to date.  Ping me if you want my gstreamer pipelines I have attempted.
+* Build and use a gstreamer pipeline instead of VLC to convert the output of Gqrx into an IceCast source stream. I've given it a try, but unsuccessful to date.  Ping me if you want to discuss the gstreamer pipelines I have attempted.
 * Use other SDR's instead of Gqrx.
 * Test with some different SDR Dongles other than the one used here.
 * Build Gqrx from source and redo the demo.  This would be the first step in investigating ways to do some performance improvements.
-* Use more elaborate and advances antennas to improve reception.
-* Create a scanner.  Some starting code can be found for this in the community.
+* Experiment with Antennas antennas to improve reception.
+* Create a scanner. Some starting code can be found for this in the community.
 * Punch through your firewall and stream to the internet.
-* Build your DragonBoard 820c from source.  Also could build and Open Embedded (OE) image and repeat the demo.
+* Build your DragonBoard 820c from source.  
 * Integrate the SDR into a bigger IVI demo on AGL
 * others?
