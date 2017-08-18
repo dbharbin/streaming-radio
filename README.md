@@ -296,7 +296,13 @@ $
 
     ![alt text](Images/PulseAudioVLC+GqrxPlaying.png "Pulse Audio Volume Control")
 
-* Now that the front end raw audio is streaming into VLC, transcode and stream that to IceCast in by following the next several steps:
+* Now that the front end raw audio is streaming into VLC, transcode and stream that to IceCast in by following the next several steps in the VLC app:
+
+   * Select `Media` - `Open Network Stream`  on the bottom right, change `Play` to `Stream`
+     
+    ![alt text](Images/VLCNetwork-PlayToStream.png "VLC Stream Select")
+    
+   * Leave `Source` field blank and just clicke `Next`
    * 
 
 
