@@ -189,25 +189,25 @@ Below is the diff between mine and the default. I have also included mine in thi
 ```
 diff icecast.xml original_icecast.xml 
 5,6c5,6
-<     <location>**Scottsdale**</location>
-<     <admin>**don.harbin@gmail.com**</admin>
+<     <location>Scottsdale</location>
+<     <admin>xyz.abc@mymail.com</admin>
 ---
 >     <location>Earth</location>
 >     <admin>icemaster@localhost</admin>
 37c37
-<         <source-password>**linaro**</source-password>
+<         <source-password>linaro</source-password>
 ---
 >         <source-password>hackme</source-password>
 39c39
-<         <relay-password>**linaro**</relay-password>
+<         <relay-password>linaro</relay-password>
 ---
 >         <relay-password>hackme</relay-password>
 43c43
-<         <admin-password>**linaro**</admin-password>
+<         <admin-password>linaro</admin-password>
 ---
 >         <admin-password>hackme</admin-password>
 64c64
-<     <hostname>**192.168.1.115**</hostname>
+<     <hostname>192.168.1.115</hostname>
 ---
 >     <hostname>localhost</hostname>
 70c70
@@ -215,7 +215,7 @@ diff icecast.xml original_icecast.xml
 ---
 >         <!-- <shoutcast-mount>/stream</shoutcast-mount> -->
 117c117
-<         <local-mount>/**donstream.ogg**</local-mount>
+<         <local-mount>/donstream.ogg</local-mount>
 ---
 >         <local-mount>/different.ogg</local-mount>
 236a237
@@ -298,14 +298,28 @@ $
 
 * Now that the front end raw audio is streaming into VLC, transcode and stream that to IceCast in by following the next several steps in the VLC app:
 
-   * Select `Media` - `Open Network Stream`  on the bottom right, change `Play` to `Stream`
+   * Select `Media` - `Open Network Stream`  on the bottom right dropdown, change `Play` to `Stream`
      
     ![alt text](Images/VLCNetwork-PlayToStream.png "VLC Stream Select")
     
    * Leave `Source` field blank and just clicke `Next`
-   * 
+   * Now on `Destination Setup` screen change dropdown to `IceCast` and click `Add`
+   
+       ![alt text](Images/VLCstreamSelectDestinationAsIceCast-ClickAdd.png "VLC Stream Select IceCast")
+       
+   * On `IceCast` congifuration screen, fill in the IceCast fields to align with the values customized in the /etc/icecast2/icecast.xml file that was customized during configuation.  In particular, `<source-password>`, `<hostname>`, and `<local-mount>`.  Note under `Login:pass`, Login is always `source`.   Then click `Next`
+   
+       ![alt text](Images/VLCStreamSetupIceCastStreamInfo.png "VLC Stream Select IceCast")
+
+   * On the `Transcoding Options` screen, select `Audio-Vorbis (OGG)` option and select `Next`
+   * Should now be on the final `Option Setup` summary screen, review settings and click `Next`.  Transcoding Raw audio from Gqrx to ogg and streaming this to IceCast will now begin.
+   * In Gqrx, if you are tuned into a frequency that has an active transmitter (such as an FM radio channel) and the `Steam Raw audio over UDP` button is depressed, then you will be able to hear the stream over the network by selecting the IP address and port of the Target.  
+   
+       ![alt text](Images/IceCastScreenshot.png "VLC Stream Select IceCast")
 
 
+ That's it! You are now setup with your own SDR streaming over IceCast!
+   
 
 # Debug hints
 Helpful debug hints when setting up and verifying this demo:
