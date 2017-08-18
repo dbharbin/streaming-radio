@@ -272,7 +272,7 @@ $
 ```
 * Start Gqrx on the DragonBoard 820c
     * Make sure playing audio
-        * Put in headset into USB to Audio adapter and verify Audio can be heard locally.  Don't continue until this is working
+        * Put in headset into USB to Audio adapter, tune in a transmitting frequency and verify Audio can be heard locally.  Don't continue until this is working
 * Set up Gqrx for USP Streaming under the Audio Options tab `...` - `Network` sub menu. Enter the IP address of the DragonBoard 820c (localhost may work as well). UDP Port can remain as 7355 default.
     
     ![alt text](Images/GqrxUDPSetup.png "Audio Options configuration window")
@@ -288,8 +288,16 @@ $
 
   `cvlc --demux=rawaud --rawaud-channels=1 --rawaud-samplerate=48000 udp://@:7355`
 
-* next 
+* Open a terminal on the Target and start up VLC that will be used to transcode from Gqrx to IceCast
 
+`vlc --demux=rawaud --rawaud-channels=1 --rawaud-samplerate=48000 udp://@:7355`
+
+* VLC will come up. It should be playing Gqrx Audio locally. So you will have two audio sources playing at the same time. (Gqrx and VLC).  Can see that in Pulse Audio Volume control.
+
+    ![alt text](Images/PulseAudioVLC+GqrxPlaying.png "Pulse Audio Volume Control")
+
+* Now that the front end raw audio is streaming into VLC, transcode and stream that to IceCast in by following the next several steps:
+   * 
 
 
 
