@@ -383,7 +383,7 @@ Two options were used to monitor temperature
 # Next Steps 
 If you got this far, congratulations!  You're streaming radio over your home network, and with minor modifications, even over the internet!  This section lists some possible follow-on extensions to the project that could be fun.  If you beat me to it, great! 
 
-* Build ither transcoders like a gstreamer pipeline instead of VLC to convert the output of Gqrx into an IceCast source stream. I've given it a try, but unsuccessful to date.  Automate the VLC transcoder pipeline so that totally turned on from command line.
+* Build other transcoder pipeines like gstreamer instead of VLC to convert the output of Gqrx into an IceCast source stream.  Automate the VLC transcoder pipeline so that totally turned on from command line.
 * Use other SDR's instead of Gqrx.
 * Test with some different SDR Dongles other than the one used here.
 * Build Gqrx from source and redo the demo.  This would be the first step in investigating ways to do some performance improvements.
