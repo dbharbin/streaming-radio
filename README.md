@@ -298,7 +298,8 @@ $
 
 * Now that the front end raw audio is streaming into VLC, transcode and stream that to IceCast in by following the next several steps in the VLC app:
 
-   * Select `Media` - `Open Network Stream`  on the bottom right dropdown, change `Play` to `Stream`
+   * Select `Media` - `Open Network Stream`  on the bottom right dropdown
+        * make sure the network URL field contains`udp://@:7355 :demux=rawaud:rawaud-channels=1:rawaud-samplerate=48000` and change `Play` to `Stream`
      
        ![alt text](Images/VLCNetwork-PlayToStream.png "VLC Stream Select")
     
