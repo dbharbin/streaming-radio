@@ -66,7 +66,7 @@ make
 sudo make install
 sudo ldconfig
 ```
-Next reate the rtl-sdr rules. Plug the RTL-SDR dongle into the USB Port on the DragonBoard 820c and execute the following command to determine the VenderID and ProductID of the dongle:
+Next create the rtl-sdr rules. Plug the RTL-SDR dongle into the USB Port on the DragonBoard 820c and execute the following command to determine the VenderID and ProductID of the dongle:
 
 `lsusb|grep Real`
 
@@ -85,7 +85,7 @@ And insert the following line:
 
 Save the file and exit.
 
-Power cycle with the SDR USB Dongle disconnect and **after** the system has booted, install the dongle.
+Power cycle with the SDR USB Dongle disconnected and **after** the system has booted, install the dongle.
 
 To test the driver build above and assure it's working correctly, run the following command:
 
