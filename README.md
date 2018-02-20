@@ -44,7 +44,7 @@ sudo apt-get -y install vlc
 sudo apt-get -y install gkrellm
 sudo apt-get -y install git
 sudo apt-get -y install cmake
-sudp apt-get -y install libusb-1.0-0.dev
+sudo apt-get -y install libusb-1.0-0.dev
 sudo apt-get -y install build-essential
 ```
 OR install all at once:
